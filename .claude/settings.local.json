@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "bash(ls:*)",
+      "Bash(cd:*)",
+      "Bash(ls:*)"
+    ]
+  }
+}
