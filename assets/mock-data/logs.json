@@ -1,0 +1,224 @@
+[
+  {
+    "id": "log-001",
+    "timestamp": 1738454400000,
+    "level": "INFO",
+    "message": "서버가 정상적으로 시작되었습니다",
+    "source": "system",
+    "metadata": {
+      "version": "1.0.0",
+      "port": 8080
+    }
+  },
+  {
+    "id": "log-002",
+    "timestamp": 1738454405000,
+    "level": "INFO",
+    "message": "데이터베이스 연결 성공",
+    "source": "database",
+    "metadata": {
+      "host": "localhost",
+      "database": "monitoring_db"
+    }
+  },
+  {
+    "id": "log-003",
+    "timestamp": 1738454410000,
+    "level": "DEBUG",
+    "message": "API 요청 처리: GET /api/metrics",
+    "source": "api-server",
+    "metadata": {
+      "userId": "user123",
+      "requestId": "req-001",
+      "responseTime": "45ms"
+    }
+  },
+  {
+    "id": "log-004",
+    "timestamp": 1738454415000,
+    "level": "INFO",
+    "message": "사용자 로그인 성공",
+    "source": "auth-service",
+    "metadata": {
+      "userId": "user456",
+      "ip": "192.168.1.100"
+    }
+  },
+  {
+    "id": "log-005",
+    "timestamp": 1738454420000,
+    "level": "WARN",
+    "message": "메모리 사용률이 높습니다: 85%",
+    "source": "monitor",
+    "metadata": {
+      "memoryUsed": "6963MB",
+      "memoryTotal": "8192MB"
+    }
+  },
+  {
+    "id": "log-006",
+    "timestamp": 1738454425000,
+    "level": "DEBUG",
+    "message": "캐시 데이터 갱신 완료",
+    "source": "cache-service",
+    "metadata": {
+      "cacheKeys": 150,
+      "hitRate": "92%"
+    }
+  },
+  {
+    "id": "log-007",
+    "timestamp": 1738454430000,
+    "level": "ERROR",
+    "message": "데이터베이스 연결 실패: Connection timeout",
+    "source": "database",
+    "metadata": {
+      "error": "ETIMEDOUT",
+      "retryCount": 3
+    }
+  },
+  {
+    "id": "log-008",
+    "timestamp": 1738454435000,
+    "level": "ERROR",
+    "message": "API 요청 실패: 500 Internal Server Error",
+    "source": "api-server",
+    "metadata": {
+      "endpoint": "/api/users",
+      "method": "POST",
+      "requestId": "req-002"
+    }
+  },
+  {
+    "id": "log-009",
+    "timestamp": 1738454440000,
+    "level": "WARN",
+    "message": "디스크 사용률 경고: 90%",
+    "source": "monitor",
+    "metadata": {
+      "diskUsed": "450GB",
+      "diskTotal": "500GB"
+    }
+  },
+  {
+    "id": "log-010",
+    "timestamp": 1738454445000,
+    "level": "INFO",
+    "message": "데이터베이스 연결 복구됨",
+    "source": "database",
+    "metadata": {
+      "downtime": "15s"
+    }
+  },
+  {
+    "id": "log-011",
+    "timestamp": 1738454450000,
+    "level": "DEBUG",
+    "message": "백그라운드 작업 실행: 로그 정리",
+    "source": "scheduler",
+    "metadata": {
+      "deletedLogs": 1500,
+      "duration": "2.3s"
+    }
+  },
+  {
+    "id": "log-012",
+    "timestamp": 1738454455000,
+    "level": "INFO",
+    "message": "시스템 상태 정상",
+    "source": "health-check",
+    "metadata": {
+      "cpu": "43.8%",
+      "memory": "50.7%",
+      "disk": "50.8%"
+    }
+  },
+  {
+    "id": "log-013",
+    "timestamp": 1738454460000,
+    "level": "WARN",
+    "message": "비정상적인 API 요청 패턴 감지",
+    "source": "security",
+    "metadata": {
+      "ip": "192.168.1.250",
+      "requestCount": 500,
+      "timeWindow": "1분"
+    }
+  },
+  {
+    "id": "log-014",
+    "timestamp": 1738454465000,
+    "level": "ERROR",
+    "message": "인증 토큰 만료",
+    "source": "auth-service",
+    "metadata": {
+      "userId": "user789",
+      "tokenId": "token-abc123"
+    }
+  },
+  {
+    "id": "log-015",
+    "timestamp": 1738454470000,
+    "level": "INFO",
+    "message": "새로운 사용자 등록",
+    "source": "user-service",
+    "metadata": {
+      "userId": "user999",
+      "email": "newuser@example.com"
+    }
+  },
+  {
+    "id": "log-016",
+    "timestamp": 1738454475000,
+    "level": "DEBUG",
+    "message": "WebSocket 연결 수립",
+    "source": "websocket",
+    "metadata": {
+      "clientId": "client-001",
+      "ip": "192.168.1.150"
+    }
+  },
+  {
+    "id": "log-017",
+    "timestamp": 1738454480000,
+    "level": "WARN",
+    "message": "CPU 사용률 임계값 초과: 85%",
+    "source": "monitor",
+    "metadata": {
+      "cpuUsage": "85.2%",
+      "threshold": "80%"
+    }
+  },
+  {
+    "id": "log-018",
+    "timestamp": 1738454485000,
+    "level": "INFO",
+    "message": "배치 작업 완료",
+    "source": "batch-processor",
+    "metadata": {
+      "processedItems": 10000,
+      "duration": "45s"
+    }
+  },
+  {
+    "id": "log-019",
+    "timestamp": 1738454490000,
+    "level": "ERROR",
+    "message": "파일 시스템 접근 오류",
+    "source": "file-service",
+    "metadata": {
+      "path": "/var/log/app.log",
+      "error": "EACCES"
+    }
+  },
+  {
+    "id": "log-020",
+    "timestamp": 1738454495000,
+    "level": "INFO",
+    "message": "모니터링 대시보드 새로고침",
+    "source": "dashboard",
+    "metadata": {
+      "refreshRate": "5s"
+    }
+  }
+]

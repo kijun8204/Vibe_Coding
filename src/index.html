@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="실시간 서버 모니터링 및 로그 분석 대시보드">
+    <title>서버 모니터링 대시보드</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/charts.css">
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header" role="banner">
+        <div class="container">
+            <h1 class="header__title">
+                <span class="header__icon" aria-hidden="true">📊</span>
+                서버 모니터링 대시보드
+            </h1>
+            <div class="header__actions">
+                <button class="btn btn--secondary" id="settingsBtn" aria-label="설정">
+                    <span aria-hidden="true">⚙️</span>
+                    설정
+                </button>
+                <button class="btn btn--secondary" id="themeToggle" aria-label="테마 전환">
+                    <span aria-hidden="true">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="main" role="main">
+        <div class="container">
+            <!-- 메트릭 섹션 -->
+            <section class="metrics-section" aria-labelledby="metrics-heading">
+                <div class="section-header">
+                    <h2 id="metrics-heading" class="section-title">서버 메트릭</h2>
+                    <div class="section-actions">
+                        <span class="update-time" id="lastUpdate" aria-live="polite">
+                            마지막 업데이트: -
+                        </span>
+                        <button class="btn btn--small" id="refreshBtn" aria-label="새로고침">
+                            <span aria-hidden="true">🔄</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 메트릭 카드 그리드 -->
+                <div class="metrics-grid" id="metricsGrid" role="region" aria-label="서버 메트릭 카드">
+                    <!-- CPU 메트릭 카드 -->
+                    <article class="metric-card" data-metric="cpu">
+                        <div class="metric-card__header">
+                            <h3 class="metric-card__title">
+                                <span class="metric-card__icon" aria-hidden="true">💻</span>
+                                CPU 사용률
+                            </h3>
+                            <span class="metric-card__status" data-status="normal">정상</span>
+                        </div>
+                        <div class="metric-card__body">
+                            <div class="metric-card__value">
+                                <span class="value" id="cpuValue">0</span>
+                                <span class="unit">%</span>
+                            </div>
+                            <div class="metric-card__chart" id="cpuChart" aria-hidden="true">
+                                <!-- 차트가 여기에 렌더링됨 -->
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 메모리 메트릭 카드 -->
+                    <article class="metric-card" data-metric="memory">
+                        <div class="metric-card__header">
+                            <h3 class="metric-card__title">
+                                <span class="metric-card__icon" aria-hidden="true">🧠</span>
+                                메모리 사용률
+                            </h3>
+                            <span class="metric-card__status" data-status="normal">정상</span>
+                        </div>
+                        <div class="metric-card__body">
+                            <div class="metric-card__value">
+                                <span class="value" id="memoryValue">0</span>
+                                <span class="unit">MB</span>
+                            </div>
+                            <div class="metric-card__info">
+                                <span id="memoryTotal">0</span> MB 중
+                            </div>
+                            <div class="metric-card__chart" id="memoryChart" aria-hidden="true">
+                                <!-- 차트가 여기에 렌더링됨 -->
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 디스크 메트릭 카드 -->
+                    <article class="metric-card" data-metric="disk">
+                        <div class="metric-card__header">
+                            <h3 class="metric-card__title">
+                                <span class="metric-card__icon" aria-hidden="true">💾</span>
+                                디스크 사용률
+                            </h3>
+                            <span class="metric-card__status" data-status="normal">정상</span>
+                        </div>
+                        <div class="metric-card__body">
+                            <div class="metric-card__value">
+                                <span class="value" id="diskValue">0</span>
+                                <span class="unit">GB</span>
+                            </div>
+                            <div class="metric-card__info">
+                                <span id="diskTotal">0</span> GB 중
+                            </div>
+                            <div class="metric-card__chart" id="diskChart" aria-hidden="true">
+                                <!-- 차트가 여기에 렌더링됨 -->
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 네트워크 메트릭 카드 -->
+                    <article class="metric-card" data-metric="network">
+                        <div class="metric-card__header">
+                            <h3 class="metric-card__title">
+                                <span class="metric-card__icon" aria-hidden="true">🌐</span>
+                                네트워크 사용량
+                            </h3>
+                            <span class="metric-card__status" data-status="normal">정상</span>
+                        </div>
+                        <div class="metric-card__body">
+                            <div class="metric-card__value metric-card__value--split">
+                                <div>
+                                    <span class="label">↓ IN:</span>
+                                    <span class="value" id="networkIn">0</span>
+                                    <span class="unit">Mbps</span>
+                                </div>
+                                <div>
+                                    <span class="label">↑ OUT:</span>
+                                    <span class="value" id="networkOut">0</span>
+                                    <span class="unit">Mbps</span>
+                                </div>
+                            </div>
+                            <div class="metric-card__chart" id="networkChart" aria-hidden="true">
+                                <!-- 차트가 여기에 렌더링됨 -->
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 로그 섹션 -->
+            <section class="logs-section" aria-labelledby="logs-heading">
+                <div class="section-header">
+                    <h2 id="logs-heading" class="section-title">로그 분석</h2>
+                    <div class="section-actions">
+                        <button class="btn btn--small btn--secondary" id="exportLogsBtn">
+                            <span aria-hidden="true">📥</span>
+                            내보내기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 필터 및 검색 바 -->
+                <div class="filter-bar" role="search">
+                    <div class="filter-bar__search">
+                        <label for="logSearch" class="visually-hidden">로그 검색</label>
+                        <input
+                            type="text"
+                            id="logSearch"
+                            class="search-input"
+                            placeholder="로그 검색 (키워드 또는 정규식)..."
+                            aria-label="로그 검색"
+                        >
+                        <button class="btn btn--icon" id="searchBtn" aria-label="검색">
+                            <span aria-hidden="true">🔍</span>
+                        </button>
+                    </div>
+
+                    <div class="filter-bar__filters">
+                        <!-- 로그 레벨 필터 -->
+                        <div class="filter-group">
+                            <label for="levelFilter" class="filter-label">레벨:</label>
+                            <select id="levelFilter" class="filter-select" aria-label="로그 레벨 필터">
+                                <option value="all">전체</option>
+                                <option value="ERROR">ERROR</option>
+                                <option value="WARN">WARN</option>
+                                <option value="INFO">INFO</option>
+                                <option value="DEBUG">DEBUG</option>
+                            </select>
+                        </div>
+
+                        <!-- 시간 범위 필터 -->
+                        <div class="filter-group">
+                            <label for="timeFilter" class="filter-label">시간:</label>
+                            <select id="timeFilter" class="filter-select" aria-label="시간 범위 필터">
+                                <option value="all">전체</option>
+                                <option value="1h">최근 1시간</option>
+                                <option value="24h">최근 24시간</option>
+                                <option value="7d">최근 7일</option>
+                                <option value="custom">사용자 지정</option>
+                            </select>
+                        </div>
+
+                        <!-- 필터 초기화 -->
+                        <button class="btn btn--small btn--text" id="clearFiltersBtn">
+                            초기화
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 로그 통계 -->
+                <div class="log-stats" role="region" aria-label="로그 통계">
+                    <div class="stat-item">
+                        <span class="stat-label">전체:</span>
+                        <span class="stat-value" id="statTotal">0</span>
+                    </div>
+                    <div class="stat-item stat-item--error">
+                        <span class="stat-label">ERROR:</span>
+                        <span class="stat-value" id="statError">0</span>
+                    </div>
+                    <div class="stat-item stat-item--warn">
+                        <span class="stat-label">WARN:</span>
+                        <span class="stat-value" id="statWarn">0</span>
+                    </div>
+                    <div class="stat-item stat-item--info">
+                        <span class="stat-label">INFO:</span>
+                        <span class="stat-value" id="statInfo">0</span>
+                    </div>
+                    <div class="stat-item stat-item--debug">
+                        <span class="stat-label">DEBUG:</span>
+                        <span class="stat-value" id="statDebug">0</span>
+                    </div>
+                </div>
+
+                <!-- 로그 뷰어 -->
+                <div class="log-viewer" role="region" aria-label="로그 목록">
+                    <div class="log-viewer__container" id="logViewerContainer">
+                        <!-- 로그 항목들이 여기에 렌더링됨 -->
+                        <div class="log-viewer__empty" id="emptyState">
+                            <p>로그가 없습니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- 페이지네이션 -->
+                    <div class="pagination" id="pagination" role="navigation" aria-label="로그 페이지네이션">
+                        <button class="pagination__btn" id="prevPageBtn" aria-label="이전 페이지" disabled>
+                            이전
+                        </button>
+                        <span class="pagination__info">
+                            <span id="currentPage">1</span> / <span id="totalPages">1</span>
+                        </span>
+                        <button class="pagination__btn" id="nextPageBtn" aria-label="다음 페이지" disabled>
+                            다음
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 알림 패널 -->
+            <aside class="alert-panel" id="alertPanel" role="region" aria-label="알림 패널" aria-live="polite">
+                <!-- 알림 메시지들이 여기에 렌더링됨 -->
+            </aside>
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p class="footer__text">
+                &copy; 2026 VibeCoding Study - Module 3
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript 모듈 -->
+    <script type="module" src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "🚀 Chrome 디버깅 (Live Server)",
+      "url": "http://localhost:5500/src/index.html",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "trace": true,
+      "runtimeArgs": [
+        "--auto-open-devtools-for-tabs"
+      ],
+      "preLaunchTask": "Live Server가 실행 중이어야 합니다"
+    },
+    {
+      "type": "msedge",
+      "request": "launch",
+      "name": "🚀 Edge 디버깅 (Live Server)",
+      "url": "http://localhost:5500/src/index.html",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "trace": true,
+      "runtimeArgs": [
+        "--auto-open-devtools-for-tabs"
+      ]
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "🐛 Chrome 디버깅 (포트 8000)",
+      "url": "http://localhost:8000/src/index.html",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "trace": true,
+      "runtimeArgs": [
+        "--auto-open-devtools-for-tabs"
+      ]
+    }
+  ]
+}
